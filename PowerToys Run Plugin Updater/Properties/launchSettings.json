@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "PowerToys Run Plugin Updater (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "PowerToys Run Plugin Updater (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

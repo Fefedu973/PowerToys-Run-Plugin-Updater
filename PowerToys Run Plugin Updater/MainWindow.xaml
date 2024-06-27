@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="PowerToys_Run_Plugin_Updater.MainWindow"
+    Title="Plugin Update"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="PowerToys_Run_Plugin_Updater:Updater"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:tk7controls="using:CommunityToolkit.WinUI.UI.Controls"
+    mc:Ignorable="d"
+    >
+    <Window.SystemBackdrop>
+        <MicaBackdrop Kind="Base"/>
+    </Window.SystemBackdrop>
+    <Grid Margin='0 0 0 -64'>
+        <Border x:Name="AppTitleBar" Grid.Column="1" VerticalAlignment="Top" Height="64" Background="{ThemeResource LayerOnMicaBaseAltFillColorSecondaryBrush}">
+            <StackPanel Orientation="Horizontal" Height="64">
+                <Image x:Name="TitleBarIcon" Source="StoreLogo.png" HorizontalAlignment="Left" Width="20" Height="20" Margin="20,0,0,0"/>
+                <TextBlock x:Name="TitleBarTextBlock" Text="Plugin Updater" Style="{StaticResource CaptionTextBlockStyle}" VerticalAlignment="Center" Margin="15,-3,0,0"/>
+            </StackPanel>
+        </Border>
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock Name="Changelog" HorizontalTextAlignment="Center" Margin="0 0 0 15" FontSize="20" FontWeight="Bold">New update avalaible ! 🎉</TextBlock>
+            <Rectangle HorizontalAlignment="Stretch" Height="1" Fill="#2f2f2f"/>
+            <TextBlock Name="TitleChangelog" HorizontalTextAlignment="Center" Margin="0 10 0 2" FontSize="15" FontWeight="Bold">Changelog:</TextBlock>
+            <ScrollViewer Name="ChangelogContainer" VerticalScrollBarVisibility="Auto" Background="#272727" CornerRadius="10" Padding="10" Width="550" Margin="0 10 0 10" Height="300">
+                <Grid>
+                    <ProgressRing HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    IsIndeterminate="True"
+                    Visibility="Visible"
+                    x:Name="Ring"/>
+                    <tk7controls:MarkdownTextBlock
+                    x:Name="ReleaseNotesMarkdown"
+                    FontSize="15"
+                    Padding="0"
+                    Background="#272727"
+                    Text=""
+                    Width="550"
+                        Visibility="Collapsed"/>
+                </Grid>
+
+            </ScrollViewer>
+            <CheckBox Name="DontAskAgain" Content="Don't ask again" HorizontalAlignment="Right" Margin="0 0 0 5" Click="DontAskAgain_Click"/>
+            <Rectangle HorizontalAlignment="Stretch" Height="1" Fill="#2f2f2f" />
+            <Grid Margin="10">
+                <Button Name="CancelButton" Content="Ignore ❌" HorizontalAlignment="Left" Width="150" Padding="7" Click="CancelButton_Click"/>
+                <Button Name="UpdateButton" Content="Update 💾" HorizontalAlignment="Right" Width="150" Padding="7" Click="UpdateButton_Click"/>
+                <ProgressBar x:Name="Progressbar" Width="500" IsIndeterminate="True" Visibility="Collapsed" VerticalAlignment="Center" Height="45" Margin="0 -10 0 0">
+                </ProgressBar>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 0 0 -15">
+                    <TextBlock x:Name="LogText" HorizontalTextAlignment="Center" Visibility="Collapsed" VerticalAlignment="Bottom" MaxWidth="500" TextTrimming="WordEllipsis"/>
+                    <TextBlock HorizontalTextAlignment="Center" VerticalAlignment="Bottom" Padding="7"/>
+                    <Button x:Name="SuccesButton" HorizontalAlignment="Center" Visibility="Collapsed" VerticalAlignment="Bottom" Content="Ok ✅" Margin="0 0 0 -7" Click="SuccesButton_Click"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>
