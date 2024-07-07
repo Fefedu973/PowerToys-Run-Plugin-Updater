@@ -180,7 +180,7 @@ namespace PowerToys_Run_Plugin_Updater
             // GitHub APIs require sending an user agent
             // https://docs.github.com/rest/overview/resources-in-the-rest-api#user-agent-required
             getReleaseInfoClient.DefaultRequestHeaders.TryAddWithoutValidation("User-Agent", "PowerToys");
-            string releaseInfo = await getReleaseInfoClient.GetStringAsync("https://api.github.com/repos/Fefedu973/PowerToys-Run-Google-Search-Suggestions-Plugin/releases/latest");
+            string releaseInfo = await getReleaseInfoClient.GetStringAsync("https://api.github.com/repos/Fefedu973/PowerToys-Run-Universal-Search-Suggestions-Plugin/releases/latest");
 
             System.Diagnostics.Debug.WriteLine(architecture);
 
@@ -218,7 +218,7 @@ namespace PowerToys_Run_Plugin_Updater
                     Progressbar.Value = 0;
 
                     string pluginDirectory = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Microsoft", "PowerToys", "PowerToys Run", "Plugins");
-                    string pluginPath = System.IO.Path.Combine(pluginDirectory, "PowerToys-Run-Google-Search-Suggestions-Plugin.zip");
+                    string pluginPath = System.IO.Path.Combine(pluginDirectory, "PowerToys-Run-Universal-Search-Suggestions-Plugin.zip");
 
                     using var downloadStream = await response.Content.ReadAsStreamAsync();
                     using var fileStream = new FileStream(pluginPath, FileMode.Create, FileAccess.Write, FileShare.None, 8192, true);
@@ -267,7 +267,7 @@ namespace PowerToys_Run_Plugin_Updater
 
             // Delete a file in the plugin directory
             string pluginDirectory2 = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Microsoft", "PowerToys", "PowerToys Run", "Plugins");
-            string pluginPath2 = System.IO.Path.Combine(pluginDirectory2, "GoogleSearchSuggestions");
+            string pluginPath2 = System.IO.Path.Combine(pluginDirectory2, "UniversalSearchSuggestions");
             if (System.IO.Directory.Exists(pluginPath2))
             {
                 LogText.Text = "Stopping PowerToys process...";
@@ -279,7 +279,7 @@ namespace PowerToys_Run_Plugin_Updater
             LogText.Text = "Deleting old plugin...";
 
             string pluginDirectory3 = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Microsoft", "PowerToys", "PowerToys Run", "Plugins");
-            string pluginPath3 = System.IO.Path.Combine(pluginDirectory3, "PowerToys-Run-Google-Search-Suggestions-Plugin.zip");
+            string pluginPath3 = System.IO.Path.Combine(pluginDirectory3, "PowerToys-Run-Universal-Search-Suggestions-Plugin.zip");
 
             LogText.Text = "Extracting plugin...";
 
@@ -343,7 +343,7 @@ namespace PowerToys_Run_Plugin_Updater
             // GitHub APIs require sending an user agent
             // https://docs.github.com/rest/overview/resources-in-the-rest-api#user-agent-required
             getReleaseInfoClient.DefaultRequestHeaders.TryAddWithoutValidation("User-Agent", "PowerToys");
-            releaseNotesJSON = await getReleaseInfoClient.GetStringAsync("https://api.github.com/repos/Fefedu973/PowerToys-Run-Google-Search-Suggestions-Plugin/releases");
+            releaseNotesJSON = await getReleaseInfoClient.GetStringAsync("https://api.github.com/repos/Fefedu973/PowerToys-Run-Universal-Search-Suggestions-Plugin/releases");
             IList<PluginReleaseInfo> releases = JsonSerializer.Deserialize<IList<PluginReleaseInfo>>(releaseNotesJSON);
 
             // Get the latest releases
